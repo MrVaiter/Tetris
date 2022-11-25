@@ -16,7 +16,9 @@
 }
 
 .tetromino {
-    background-color: blue;
+    outline: 1px solid rgb(0, 0, 0);
+    outline-offset: -1px;
+    box-shadow: inset 0px 0px 10px 2px rgb(37, 37, 37);
 }
 
 .mini-grid {
