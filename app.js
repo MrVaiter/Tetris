@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Move down interval
-    timerId = setInterval(moveDown, 1000);
+    timerId = setInterval(moveDown, 500);
 
     // Move down function
     function moveDown() {
@@ -80,8 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Freeze function
-    function freeze(){
-        if(current.some(index => squares[currentPosition + index + width].classList.contains('taken'))){
+    function freeze() {
+        if (current.some(index => squares[currentPosition + index + width].classList.contains('taken'))) {
             current.forEach(index => squares[currentPosition + index].classList.add('taken'));
 
             // Start new tetromino fall
@@ -90,6 +90,23 @@ document.addEventListener('DOMContentLoaded', () => {
             currentPosition = 4;
             draw();
         }
+    }
+
+    // Move left function
+    function moveLeft() {
+        undraw();
+
+        const isAtLeftEdge = current.some(index => (currentPosition + index) % width === 0);
+
+        if (!isAtLeftEdge) {
+            currentPosition -= 1;
+        }
+
+        if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+            currentPosition += 1;
+        }
+
+        draw();
     }
 
     draw();
