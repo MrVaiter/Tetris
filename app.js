@@ -71,6 +71,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Move down interval
     timerId = setInterval(moveDown, 500);
 
+    // Assign functions to keyCodes
+    function control(e) {
+        switch (e.keyCode) {
+            case 37:
+                moveLeft();
+                break;
+            case 38:
+                Rotate();
+                break;
+            case 39:
+                moveRight();
+                break;
+            case 40:
+                moveDown();
+                break;
+        }
+    }
+    document.addEventListener('keyup', control);
+
     // Move down function
     function moveDown() {
         undraw();
