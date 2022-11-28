@@ -66,11 +66,11 @@ body h3 {
     font-family: 'Orbitron', sans-serif;
 }
 
-#start-button:hover{
+#start-button:hover {
     border: 1px solid rgb(0, 0, 0);
 }
 
-#start-button:active{
+#start-button:active {
     background-image: radial-gradient(rgb(44, 66, 109), rgb(11, 17, 27));
 }
 
@@ -87,7 +87,7 @@ body h3 {
     margin-left: 50px;
 }
 
-.sidebar{
+.sidebar {
     color: rgb(255, 255, 255);
     font-family: 'Orbitron', sans-serif;
     margin-bottom: 0px;
@@ -110,11 +110,11 @@ body h3 {
     line-height: 30px;
 }
 
-.speed-button:hover{
+.speed-button:hover {
     border: 1px solid rgb(0, 0, 0);
 }
 
-.speed-button:active{
+.speed-button:active {
     background-image: radial-gradient(rgb(44, 66, 109), rgb(11, 17, 27));
 }
 
@@ -135,17 +135,67 @@ body h3 {
     font-family: 'Orbitron', sans-serif;
 }
 
-.rules-button{
+.rules-button {
     background-image: radial-gradient(rgb(61, 94, 156), rgb(31, 50, 83));
     border: 1px solid rgb(255, 255, 255);
     color: white;
     height: 35px;
 }
 
-.rules-button:hover{
+.rules-button:hover {
     border: 1px solid rgb(0, 0, 0);
 }
 
-.rules-button:active{
+.rules-button:active {
     background-image: radial-gradient(rgb(44, 66, 109), rgb(11, 17, 27));
+}
+
+.shadow{
+    display: flex;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 100%;
+    width: 100%;
+}
+
+.rules {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin: 0 auto;
+    background-color: rgb(44, 66, 109);
+    border: 1px solid rgb(255, 255, 255);
+    width: 300px;
+    height: 340px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.rules h4{
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.rules p{
+    color: rgb(255, 255, 255);
+    margin-left: 10px;
+}
+
+.rules button{
+    color: rgb(255, 255, 255);
+    background-color: rgb(44, 66, 109);
+    border: 1px solid rgb(255, 255, 255);
+    height: 40px;
+    width: 150px;
+    font-size: 20px;
+    font-family: 'Orbitron', sans-serif;
+    align-self: center;
+}
+
+.rules button:hover {
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.rules button:active {
+    background-color: rgb(11, 17, 27);
 }
