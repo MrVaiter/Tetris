@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const grid = document.querySelector('.grid');
     let squares = Array.from(document.querySelectorAll('.grid div'));
 
-    const scoreDisplay = document.querySelector('#score');    
+    const scoreDisplay = document.querySelector('#score');
     const startBtn = document.querySelector('#start-button');
 
     const speedUpBtn = document.querySelector('#speedUp');
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < 199; i += width) {
             const row = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6, i + 7, i + 8, i + 9];
 
-            if(row.every(index => squares[index].classList.contains('taken'))){
+            if (row.every(index => squares[index].classList.contains('taken'))) {
                 score += 10;
                 scoreDisplay.innerHTML = score;
 
@@ -243,34 +243,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Add game over
-    function gameOver(){
-        if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+    function gameOver() {
+        if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
             scoreDisplay.innerHTML = 'Game Over';
             clearInterval(timerId);
         }
     }
 
-    speedUpBtn.addEventListener('click', () => {
-        if((speedMode + 1) <= 5){
-            speedMode++;
-            speedModeDisplay.innerHTML = speedMode;
-            
+    // Change fall speed
+    function ChangeFallSpeed(changeSpeed) {
+
+        if(timerId){
             clearInterval(timerId);
             timerId = null;
-            fallSpeed -= 200;
+            fallSpeed = changeSpeed(fallSpeed);
             timerId = setInterval(moveDown, fallSpeed);
+        }
+        else{
+            fallSpeed = changeSpeed(fallSpeed);
+        }
+
+    }
+
+    // Speed up fall speed
+    speedUpBtn.addEventListener('click', () => {
+        if ((speedMode + 1) <= 5) {
+            speedMode++;
+            speedModeDisplay.innerHTML = speedMode;
+
+            ChangeFallSpeed(index => index -= 200);
         }
     });
 
+    // Slow down fall speed
     speedDownBtn.addEventListener('click', () => {
-        if((speedMode - 1) >= 1){
+        if ((speedMode - 1) >= 1) {
             speedMode--;
             speedModeDisplay.innerHTML = speedMode;
 
-            clearInterval(timerId);
-            timerId = null;
-            fallSpeed += 200;
-            timerId = setInterval(moveDown, fallSpeed);
+            ChangeFallSpeed(index => index += 200);
         }
     });
 
