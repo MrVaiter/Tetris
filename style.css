@@ -134,3 +134,18 @@ body h3 {
     font-size: 25px;
     font-family: 'Orbitron', sans-serif;
 }
+
+.rules-button{
+    background-image: radial-gradient(rgb(61, 94, 156), rgb(31, 50, 83));
+    border: 1px solid rgb(255, 255, 255);
+    color: white;
+    height: 35px;
+}
+
+.rules-button:hover{
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.rules-button:active{
+    background-image: radial-gradient(rgb(44, 66, 109), rgb(11, 17, 27));
+}

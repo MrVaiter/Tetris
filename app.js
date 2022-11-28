@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const speedModeDisplay = document.querySelector('#speedMode');
     speedModeDisplay.innerHTML = speedMode;
 
+    const audio = document.querySelector('#music');
+
     let timerId;
     let score = 0;
 
@@ -25,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'purple',
         'green',
         'blue'
-    ]
+    ];
 
     // Tetraminoes list
     const lTetromino = [
@@ -213,7 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (timerId) {
             clearInterval(timerId);
             timerId = null;
+            audio.pause();
         } else {
+            audio.play();
             draw();
             timerId = setInterval(moveDown, fallSpeed);
             displayShape();
@@ -253,13 +257,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Change fall speed
     function ChangeFallSpeed(changeSpeed) {
 
-        if(timerId){
+        if (timerId) {
             clearInterval(timerId);
             timerId = null;
             fallSpeed = changeSpeed(fallSpeed);
             timerId = setInterval(moveDown, fallSpeed);
-        }
-        else{
+        } else {
             fallSpeed = changeSpeed(fallSpeed);
         }
 
