@@ -2,15 +2,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const width = 10;
     let nextRandom = 0;
+    let fallSpeed = 600;
+    let speedMode = 3;
 
     const grid = document.querySelector('.grid');
     let squares = Array.from(document.querySelectorAll('.grid div'));
 
-    const scoreDisplay = document.querySelector('#score');
+    const scoreDisplay = document.querySelector('#score');    
     const startBtn = document.querySelector('#start-button');
+
+    const speedUpBtn = document.querySelector('#speedUp');
+    const speedDownBtn = document.querySelector('#speedDown');
+    const speedModeDisplay = document.querySelector('#speedMode');
+    speedModeDisplay.innerHTML = speedMode;
 
     let timerId;
     let score = 0;
+
     const colors = [
         'orange',
         'red',
@@ -207,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
             timerId = null;
         } else {
             draw();
-            timerId = setInterval(moveDown, 500);
+            timerId = setInterval(moveDown, fallSpeed);
             displayShape();
         }
     })
@@ -241,5 +249,29 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(timerId);
         }
     }
+
+    speedUpBtn.addEventListener('click', () => {
+        if((speedMode + 1) <= 5){
+            speedMode++;
+            speedModeDisplay.innerHTML = speedMode;
+            
+            clearInterval(timerId);
+            timerId = null;
+            fallSpeed -= 200;
+            timerId = setInterval(moveDown, fallSpeed);
+        }
+    });
+
+    speedDownBtn.addEventListener('click', () => {
+        if((speedMode - 1) >= 1){
+            speedMode--;
+            speedModeDisplay.innerHTML = speedMode;
+
+            clearInterval(timerId);
+            timerId = null;
+            fallSpeed += 200;
+            timerId = setInterval(moveDown, fallSpeed);
+        }
+    });
 
 })
