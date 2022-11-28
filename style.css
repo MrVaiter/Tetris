@@ -41,7 +41,6 @@ body h3{
 }
 
 .mini-grid {
-    margin-left: 50px;
     width: 120px;
     height: 120px;
     display: flex;
@@ -71,5 +70,46 @@ body h3{
     font-size: 30px;
     margin-left: 10px;
     line-height: 40px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+}
+
+.speed-panel{
+    display: flex;
+    margin-top: 15px;
+}
+
+.speed-button{
+    height: 35px;
+    width: 35px;
+    background-image: radial-gradient(rgb(61, 94, 156), rgb(31, 50, 83));
+    border: 1px solid rgb(255, 255, 255);
+    color: white;
+    font-size: 30px;
+}
+
+.speed-button:nth-child(3){
+    line-height: 30px;
+}
+
+.speed-display{
+    height: 34px;
+    width: 35px;
+    margin: 8px;
+    margin-top: 0px;
+    background-color: rgb(37, 37, 37);
+    border: 1px solid rgb(255, 255, 255);
+    color: white;
+}
+
+#speed{
+    line-height: 35px;
+    margin-left: 8px;
+    font-size: 25px;
     font-family: 'Orbitron', sans-serif;
 }
