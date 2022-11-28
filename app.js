@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const audio = document.querySelector('#music');
 
+    const openRulesBtn = document.querySelector('#open-rules');
+    const closeRulesBtn = document.querySelector('#close-rules');
+
     let timerId;
     let score = 0;
 
@@ -286,6 +289,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
             ChangeFallSpeed(index => index += 200);
         }
+    });
+
+    // Open rules window
+    openRulesBtn.addEventListener('click', () => {
+        let shadow = document.querySelector('.shadow');
+        let rulesBox = document.querySelector('.rules');
+
+        shadow.style.display = 'flex';
+        rulesBox.style.display = 'flex';
+    });
+
+    // Close rules window
+    closeRulesBtn.addEventListener('click', () => {
+        let shadow = document.querySelector('.shadow');
+        let rulesBox = document.querySelector('.rules');
+
+        shadow.style.display = 'none';
+        rulesBox.style.display = 'none';
     });
 
 })
