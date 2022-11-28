@@ -181,6 +181,10 @@ body h3 {
     font-size: 20px;
 }
 
+.rules li{
+    margin-top: 15px;
+}
+
 #open-tutor{
     display: block;
     background-image: radial-gradient(rgb(61, 94, 156), rgb(31, 50, 83));
