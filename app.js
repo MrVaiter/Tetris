@@ -181,6 +181,8 @@ document.addEventListener('DOMContentLoaded', () => {
             currentRotation = 0;
         }
 
+        // TODO исправить повороты...каким-то образом))))
+
         current = theTetrominoes[random][currentRotation];
         draw();
     }
