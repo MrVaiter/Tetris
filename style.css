@@ -1,36 +1,75 @@
+body{
+    background-image: radial-gradient(rgb(61, 94, 156), rgb(31, 50, 83));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body h3{
+    margin-bottom: 20px;
+    width: 300px;
+    height: 40px;
+    text-align: left;
+    color: white;
+    margin-left: -170px;
+    background-color: rgb(37, 37, 37);
+    border: 1px solid rgb(255, 255, 255);
+}
+
 .container {
     display: flex;
 }
 
 .grid {
-    width: 200px;
-    height: 400px;
+    width: 300px;
+    height: 600px;
     display: flex;
     flex-wrap: wrap;
-    background-color: yellow;
+    background-color: rgb(37, 37, 37);
+    border: 1px solid rgb(255, 255, 255);
 }
 
 .grid div {
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
 }
 
 .tetromino {
-    outline: 1px solid rgb(0, 0, 0);
+    outline: 1px solid rgb(255, 255, 255);
     outline-offset: -1px;
     box-shadow: inset 0px 0px 10px 2px rgb(37, 37, 37);
 }
 
 .mini-grid {
     margin-left: 50px;
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     display: flex;
     flex-wrap: wrap;
-    background-color: yellow;
+    background-color: rgb(37, 37, 37);
+    border: 1px solid rgb(255, 255, 255);
 }
 
 .mini-grid div{
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
+}
+
+#start-button{
+    width: 300px;
+    height: 40px;
+    margin-bottom: 20px;
+    background-image: radial-gradient(rgb(61, 94, 156), rgb(31, 50, 83));
+    border: 1px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    margin-left: -170px;
+    font-size: 20px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#score{
+    font-size: 30px;
+    margin-left: 10px;
+    line-height: 40px;
+    font-family: 'Orbitron', sans-serif;
 }
