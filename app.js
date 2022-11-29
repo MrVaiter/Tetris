@@ -17,14 +17,18 @@ document.addEventListener('DOMContentLoaded', () => {
     speedModeDisplay.innerHTML = speedMode;
 
     const audio = document.querySelector('#music');
+    const hardModeAudio = document.querySelector('#hard-mode-music');
 
     const openRulesBtn = document.querySelector('#open-rules');
     const closeRulesBtn = document.querySelector('#close-rules');
 
+    const challengerModeBtn = document.querySelector('#challenger-mode-button');
+
     let timerId;
     let score = 0;
+    let gameOver = false;
 
-    const colors = [
+    let colors = [
         'orange',
         'red',
         'purple',
@@ -134,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             draw();
             displayShape();
             addScore();
-            gameOver();
+            GameOver();
         }
     }
 
@@ -186,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isAtLeft = next.some(index => (currentPosition + index) % width === 0);
         const isCanRotate = !(isAtLeft && isAtRight);
 
-        if(isCanRotate){
+        if (isCanRotate) {
             currentRotation++;
             if (currentRotation === current.length) {
                 currentRotation = 0;
@@ -227,14 +231,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add functionality to the button
     startBtn.addEventListener('click', () => {
+        if (gameOver) {
+            location.reload();
+        }
+
         if (timerId) {
             clearInterval(timerId);
             timerId = null;
+
             audio.pause();
+            hardModeAudio.pause();
         } else {
+            hardModeAudio.pause();
             audio.play();
+
             draw();
+
             timerId = setInterval(moveDown, fallSpeed);
+
             displayShape();
         }
     })
@@ -262,10 +276,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Add game over
-    function gameOver() {
+    function GameOver() {
         if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
             scoreDisplay.innerHTML = 'Game Over';
             clearInterval(timerId);
+            gameOver = true;
         }
     }
 
@@ -321,6 +336,36 @@ document.addEventListener('DOMContentLoaded', () => {
         rulesBox.style.display = 'none';
     });
 
-    
+    challengerModeBtn.addEventListener('click', () => {
+        speedUpBtn.disabled = 'true';
+        speedDownBtn.disabled = 'true';
+        gameOver = true;
+
+        clearInterval(timerId);
+        timerId = null;
+        timerId = setInterval(moveDown, 1000);
+
+        audio.pause();
+        hardModeAudio.play();
+
+        colors = [
+            'red',
+            'red',
+            'red',
+            'red',
+            'red'
+        ];
+
+        document.querySelector("body").style.backgroundImage = 'radial-gradient(rgb(112, 15, 15), rgb(36, 12, 12))';
+        document.querySelector('#start-button').style.backgroundImage = 'radial-gradient(rgb(112, 15, 15), rgb(36, 12, 12))';
+        document.querySelector('#speedUp').style.backgroundImage = 'radial-gradient(rgb(112, 15, 15), rgb(36, 12, 12))';
+        document.querySelector('#speedDown').style.backgroundImage = 'radial-gradient(rgb(112, 15, 15), rgb(36, 12, 12))';
+        document.querySelector('#open-tutor').style.backgroundImage = 'radial-gradient(rgb(112, 15, 15), rgb(36, 12, 12))';
+        document.querySelector('#challenger-mode-button').style.backgroundImage = 'radial-gradient(rgb(112, 15, 15), rgb(36, 12, 12))';
+        document.querySelector('#open-rules').style.backgroundImage = 'radial-gradient(rgb(112, 15, 15), rgb(36, 12, 12))';
+
+        let speedChange = Math.abs(50 - fallSpeed);
+        ChangeFallSpeed(index => index -= speedChange);
+    });
 
 })
