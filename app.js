@@ -17,7 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     speedModeDisplay.innerHTML = speedMode;
 
     const audio = document.querySelector('#music');
+    audio.volume = 0.3;
     const hardModeAudio = document.querySelector('#hard-mode-music');
+    hardModeAudio.volume = 0.3;
 
     const openRulesBtn = document.querySelector('#open-rules');
     const closeRulesBtn = document.querySelector('#close-rules');
@@ -281,6 +283,9 @@ document.addEventListener('DOMContentLoaded', () => {
             scoreDisplay.innerHTML = 'Game Over';
             clearInterval(timerId);
             gameOver = true;
+            document.removeEventListener('keyup', control);
+            speedUpBtn.disabled = 'true';
+            speedDownBtn.disabled = 'true';
         }
     }
 
@@ -364,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('#challenger-mode-button').style.backgroundImage = 'radial-gradient(rgb(112, 15, 15), rgb(36, 12, 12))';
         document.querySelector('#open-rules').style.backgroundImage = 'radial-gradient(rgb(112, 15, 15), rgb(36, 12, 12))';
 
-        let speedChange = Math.abs(50 - fallSpeed);
+        let speedChange = Math.abs(60 - fallSpeed);
         ChangeFallSpeed(index => index -= speedChange);
     });
 
