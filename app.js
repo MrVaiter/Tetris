@@ -176,12 +176,22 @@ document.addEventListener('DOMContentLoaded', () => {
     function Rotate() {
         undraw();
 
-        currentRotation++;
-        if (currentRotation === current.length) {
-            currentRotation = 0;
+        nextRotation = currentRotation + 1;
+        if (nextRotation === current.length) {
+            nextRotation = 0;
         }
+        next = theTetrominoes[random][nextRotation];
 
-        // TODO исправить повороты...каким-то образом))))
+        const isAtRight = next.some(index => (currentPosition + index) % width === width - 1);
+        const isAtLeft = next.some(index => (currentPosition + index) % width === 0);
+        const isCanRotate = !(isAtLeft && isAtRight);
+
+        if(isCanRotate){
+            currentRotation++;
+            if (currentRotation === current.length) {
+                currentRotation = 0;
+            }
+        }
 
         current = theTetrominoes[random][currentRotation];
         draw();
