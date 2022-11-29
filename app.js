@@ -321,4 +321,6 @@ document.addEventListener('DOMContentLoaded', () => {
         rulesBox.style.display = 'none';
     });
 
+    
+
 })
