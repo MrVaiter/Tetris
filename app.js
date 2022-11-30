@@ -286,6 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.removeEventListener('keyup', control);
             speedUpBtn.disabled = 'true';
             speedDownBtn.disabled = 'true';
+            challengerModeBtn.disabled = 'true';
         }
     }
 
