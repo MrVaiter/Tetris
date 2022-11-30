@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let timerId;
     let score = 0;
-    let gameOver = false;
+    let isGameOver = false;
 
     let colors = [
         'orange',
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 moveLeft();
                 break;
             case 38:
-                Rotate();
+                rotate();
                 break;
             case 39:
                 moveRight();
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
             draw();
             displayShape();
             addScore();
-            GameOver();
+            gameOver();
         }
     }
 
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Rotate the tetramino
-    function Rotate() {
+    function rotate() {
         undraw();
 
         nextRotation = currentRotation + 1;
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add functionality to the button
     startBtn.addEventListener('click', () => {
-        if (gameOver) {
+        if (isGameOver) {
             location.reload();
         }
 
@@ -278,11 +278,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Add game over
-    function GameOver() {
+    function gameOver() {
         if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
             scoreDisplay.innerHTML = 'Game Over';
             clearInterval(timerId);
-            gameOver = true;
+            isGameOver = true;
             document.removeEventListener('keyup', control);
             speedUpBtn.disabled = 'true';
             speedDownBtn.disabled = 'true';
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Change fall speed
-    function ChangeFallSpeed(changeSpeed) {
+    function changeFallSpeed(changeSpeed) {
 
         if (timerId) {
             clearInterval(timerId);
@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
             speedMode++;
             speedModeDisplay.innerHTML = speedMode;
 
-            ChangeFallSpeed(index => index -= 200);
+            changeFallSpeed(index => index -= 200);
         }
     });
 
@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
             speedMode--;
             speedModeDisplay.innerHTML = speedMode;
 
-            ChangeFallSpeed(index => index += 200);
+            changeFallSpeed(index => index += 200);
         }
     });
 
@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
     challengerModeBtn.addEventListener('click', () => {
         speedUpBtn.disabled = 'true';
         speedDownBtn.disabled = 'true';
-        gameOver = true;
+        isGameOver = true;
 
         clearInterval(timerId);
         timerId = null;
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('#open-rules').style.backgroundImage = 'radial-gradient(rgb(112, 15, 15), rgb(36, 12, 12))';
 
         let speedChange = Math.abs(60 - fallSpeed);
-        ChangeFallSpeed(index => index -= speedChange);
+        changeFallSpeed(index => index -= speedChange);
     });
 
 })
